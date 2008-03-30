@@ -3,6 +3,7 @@
 1.3     2008-03-30 19:12 GMT+1
         - Added Changes file.
         - Added INSTALL file.
+        - POD fixes.
         - Merged bugfix patch from Kevin Brintnall (RT.cpan#34476)
         (maintainer release: Oliver Gorwits)
 

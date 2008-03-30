@@ -1,5 +1,5 @@
 # Net::MAC - Perl extension for representing and manipulating MAC addresses
-# Copyright (C) 2005-2007 Karl Ward <karlward@cpan.org>
+# Copyright (C) 2005-2008 Karl Ward <karlward@cpan.org>
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -753,18 +753,9 @@ around to supporting that case as well.
 =head2 Case is not preserved 
 
 Net::MAC doesn't reliably preserve case in a MAC address.  I might add a 
-flag to the new() and convert() methods to do this.  I might not. 
+flag to the new() and convert() methods to do this.  I might not.
 
-=head2 Zero-padding is not configurable 
-
-Net::MAC doesn't allow you to specify whether or not bit groups should 
-be zero-padded.  It always writes out base 16 addresses as zero-padded.  
-Example: 
-
-  You supply '8.32.0.171.205.239' and you want '8:20:0:ab:cd:ef'.  
-  Net::MAC gives you '08:20:00:ab:cd:ef' and a kick in the face. 
-
-Support for configurable zero-padding is forthcoming.  
+Case is however altered when using the as_foo() formatted output methods.
 
 =head1 SEE ALSO
 
@@ -775,13 +766,17 @@ Net::MAC::Vendor
 
 Karl Ward E<lt>karlward@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Oliver Gorwits E<lt>oliver.gorwits@oucs.ox.ac.ukE<gt>
+
 =head1 CONTRIBUTORS 
 
-Oliver Gorwits, Robin Crook
+Oliver Gorwits, Robin Crook, Kevin Brintnall
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005-2007 Karl Ward E<lt>karlward@cpan.orgE<gt>
+Copyright (C) 2005-2008 Karl Ward E<lt>karlward@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -4,6 +4,7 @@
         - Added Changes file.
         - Added INSTALL file.
         - POD fixes.
+        - Remove TAB chars in source and run through perltidy -pbp
         - Merged bugfix patch from Kevin Brintnall (RT.cpan#34476)
         (maintainer release: Oliver Gorwits)
 

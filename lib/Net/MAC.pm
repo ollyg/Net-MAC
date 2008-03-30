@@ -565,9 +565,9 @@ Net::MAC - Perl extension for representing and manipulating MAC addresses
 
   # Example: convert to a different MAC address format (dotted-decimal)
   my $dec_mac = $mac->convert(
-      'base' => 10,     # convert from base 16 to base 10
+      'base' => 10,         # convert from base 16 to base 10
       'bit_group' => 8,     # octet grouping
-      'delimiter' => '.'     # dot-delimited
+      'delimiter' => '.'    # dot-delimited
   ); 
 
   print "$dec_mac\n"; # Should print 8.32.0.171.205.239

@@ -8,9 +8,9 @@ SYNOPSIS
 
       # Example: convert to a different MAC address format (dotted-decimal)
       my $dec_mac = $mac->convert(
-              'base' => 10,         # convert from base 16 to base 10
-              'bit_group' => 8,     # octet grouping
-              'delimiter' => '.'    # dot-delimited
+          'base' => 10,         # convert from base 16 to base 10
+          'bit_group' => 8,     # octet grouping
+          'delimiter' => '.'    # dot-delimited
       ); 
 
       print "$dec_mac\n"; # Should print 8.32.0.171.205.239
@@ -18,10 +18,10 @@ SYNOPSIS
       # Example: find out whether a MAC is base 16 or base 10
       my $base = $mac->get_base();
       if ($base == 16) { 
-              print "$mac is in hexadecimal format\n"; 
+          print "$mac is in hexadecimal format\n"; 
       } 
       elsif ($base == 10) { 
-              print "$mac is in decimal format\n"; 
+          print "$mac is in decimal format\n"; 
       }
       else { die "This MAC is neither base 10 nor base 16"; } 
 
@@ -119,8 +119,8 @@ METHODS
     Sometimes, MAC addresses are specified with fewer than 5 delimiters, or
     even no delimiters at all:
 
-      0820.00ab.cdef        # get_bit_group() returns 16
-      082000abcdef          # get_bit_group() returns 48, no delimiters at all
+      0820.00ab.cdef    # get_bit_group() returns 16
+      082000abcdef      # get_bit_group() returns 48, no delimiters at all
 
    get_zero_padded() method
     Returns a boolean value indicating whether or not the bit groups are

@@ -10,4 +10,6 @@ t/100_base16_macs.pl
 t/Net-MAC.t
 t/bulk10.t
 t/bulk16.t
+INSTALL
+Changes
 META.yml                                 Module meta-data (added by MakeMaker)

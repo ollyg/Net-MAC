@@ -30,8 +30,8 @@ use overload
 ;
 
 # RCS ident string
-#my $rcs_id = '$Id: MAC.pm,v 1.20 2007/01/27 05:40:47 karlward Exp $'; 
-our $VERSION = '1.2'; 
+#my $rcs_id = '$Id$'; 
+our $VERSION = '1.3'; 
 our $AUTOLOAD; 
 
 # Constructor.
@@ -126,10 +126,10 @@ sub new {
 		Cisco => {base => 16, bit_group => 16, delimiter => '.' },
 		IEEE => { base => 16, bit_group => 8, delimiter => ':', zero_padded => 1, case => 'upper' },
 		Microsoft => { base => 16, bit_group => 8, delimiter => '-', case => 'upper' },
-		Sun => { base => 16, bit_group => 8, delimiter => '.', zero_padding => 0, case => 'lower' }
+		Sun => { base => 16, bit_group => 8, delimiter => ':', zero_padded => 0, case => 'lower' }
 	);
 	sub _format { 
-		my ($identifier) = @_; 
+		my ($self, $identifier) = @_; 
 		my $format = $_format_for{$identifier}; 
 		if ((defined $format) && (%$format)) { 
 			return(%$format); 
@@ -156,9 +156,10 @@ sub Net::MAC::AUTOLOAD {
 		$self->{$1} = $value;
 		return; 
 	} 
-	if ($AUTOLOAD =~ /.*::as_(\w+)/ && $_[0]->_format($1)) {
-		*{$AUTOLOAD} = sub { return $_[0]->convert($_[0]->_format($1)) };
-		return($self->convert($_[0]->_format($1)));
+	if ( $AUTOLOAD =~ /.*::as_(\w+)/ && $_[0]->_format($1)) {
+		my $fmt = $1;
+                *{$AUTOLOAD} = sub { return $_[0]->convert($_[0]->_format($fmt)) };
+		return($self->convert($_[0]->_format($fmt)));
 	}
 	croak "No such method: $AUTOLOAD";
 }
@@ -389,7 +390,7 @@ sub convert {
 		my $group = substr($imac, $offset, $size);
 		if (	($bit_group == 8) 
 			&& (exists $arg{zero_padded}) 
-			&& ($arg{zero_padded} != 0) 
+			&& ($arg{zero_padded} == 0) 
 		) { 
 			$group =~ s/^0//;
 		}
@@ -417,6 +418,15 @@ sub convert {
 	else { 
 		$mac_string = join('', @groups); 
 	}
+
+        if (exists $arg{case} && $arg{case} =~ /^(upper|lower)$/)
+        {
+            for ($mac_string)
+            {
+                $_ = $arg{case} eq 'upper' ? uc  : lc ;
+            }
+        }
+
 	# Construct the argument list for the new Net::MAC object
 	$arg{'mac'} = $mac_string; 
 #	foreach my $test (keys %arg) { 

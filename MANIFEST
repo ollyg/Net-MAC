@@ -5,6 +5,7 @@ Makefile.PL
 README
 lib/Net/MAC.pm
 scripts/gen_macs.pl
+t/10_convert_args.t
 t/100_base10_macs.pl
 t/100_base16_macs.pl
 t/Net-MAC.t

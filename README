@@ -146,6 +146,13 @@ METHODS
               'delimiter' => '.'    # dot-delimited
       );
 
+    Note that if any of the above arguments are not provided, they will be
+    set to the following default values:
+
+     base       16
+     bit_group  48  (i.e. no delimiter)
+     delimiter  :
+
   Conversion to common formats
     The most common formats have shortcut conversion methods that can be
     used instead of the convert() method with its many options.

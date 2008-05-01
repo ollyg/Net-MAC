@@ -418,7 +418,7 @@ sub convert {
     my ( $self, %arg ) = @_;
     my $imac = $self->get_internal_mac();
     my @groups;
-    my $bit_group = $arg{'bit_group'} || 48; # default value
+    my $bit_group = $arg{'bit_group'} || 8; # not _default value
     my $offset = 0;
     use integer;
     my $size = $bit_group / 4;
@@ -718,7 +718,7 @@ Note that if any of the above arguments are not provided, they will be set to
 the following default values:
 
  base       16
- bit_group  48  (i.e. no delimiter)
+ bit_group  8  (i.e. a delimiter will be used)
  delimiter  :
 
 =head2 Conversion to common formats

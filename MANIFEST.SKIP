@@ -1,1 +1,12 @@
+MANIFEST.SKIP
+README.private
+.git/
+.svn/
+blib
+pm_to_blib
+MANIFEST.bak
+MANIFEST.SKIP~
+cover_db
+Makefile$
+Makefile.old$
 scripts/gen_macs.pl

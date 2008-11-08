@@ -30,7 +30,10 @@ use overload
 
 # RCS ident string
 #my $rcs_id = '$Id$';
-our $VERSION = '1.4';
+
+our $VERSION = '1.5';
+$VERSION = eval $VERSION; # numify for warning-free dev releases
+
 our $AUTOLOAD;
 
 # Constructor.
@@ -554,7 +557,7 @@ sub error {
     return (1);
 }
 
-1;                                     # Necessary for use statement
+1;                                     # Necessary for usage statement
 
 __END__
 

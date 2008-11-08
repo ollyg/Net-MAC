@@ -1,5 +1,9 @@
 # This file documents the revision history for Perl extension Net::MAC.
 
+1.5     2008-11-08 17:42 GMT
+        - Move to Module::Install
+        - Add basic pod test
+
 1.4     2008-05-01 14:53 GMT+1
         - Fix rt.cpan#34680
           Unspecified delimiter to convert() when bit_group() is not 48

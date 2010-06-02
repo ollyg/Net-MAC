@@ -1,5 +1,8 @@
 # This file documents the revision history for Perl extension Net::MAC.
 
+1.6     2010-06-02 10:49 GMT
+        - Fix test for changes to Test::Simple (RT.cpan#57867)
+
 1.5     2008-11-08 17:42 GMT
         - Move to Module::Install
         - Add basic pod test

@@ -31,7 +31,7 @@ use overload
 # RCS ident string
 #my $rcs_id = '$Id$';
 
-our $VERSION = '1.5';
+our $VERSION = '1.6';
 $VERSION = eval $VERSION; # numify for warning-free dev releases
 
 our $AUTOLOAD;

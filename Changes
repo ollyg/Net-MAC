@@ -1,4 +1,6 @@
-# This file documents the revision history for Perl extension Net::MAC.
+{{$NEXT}}
+
+        - Port to Dist::Zilla
 
 1.6     2010-06-02 10:49 GMT
         - Fix test for changes to Test::Simple (RT.cpan#57867)

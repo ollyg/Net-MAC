@@ -16,6 +16,9 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 package Net::MAC;
+BEGIN {
+  $Net::MAC::VERSION = '1.103620';
+}
 
 use 5.006000;
 use strict;
@@ -27,12 +30,6 @@ use overload
     '!=' => \&_compare_value_ne,
     'eq' => \&_compare_string,
     'ne' => \&_compare_string_ne;
-
-# RCS ident string
-#my $rcs_id = '$Id$';
-
-our $VERSION = '1.6';
-$VERSION = eval $VERSION; # numify for warning-free dev releases
 
 our $AUTOLOAD;
 
@@ -559,11 +556,19 @@ sub error {
 
 1;                                     # Necessary for usage statement
 
+# ABSTRACT: Perl extension for representing and manipulating MAC addresses 
+
+
 __END__
+=pod
 
 =head1 NAME
 
 Net::MAC - Perl extension for representing and manipulating MAC addresses 
+
+=head1 VERSION
+
+version 1.103620
 
 =head1 SYNOPSIS
 
@@ -816,34 +821,25 @@ Case is however altered when using the as_foo() formatted output methods.
 Net::MacMap
 Net::MAC::Vendor
 
-=head1 AUTHOR
-
-Karl Ward E<lt>karlward@cpan.orgE<gt>
-
 =head1 MAINTAINER
 
-Oliver Gorwits E<lt>oliver.gorwits@oucs.ox.ac.ukE<gt>
+Oliver Gorwits <oliver@cpan.org>
 
 =head1 CONTRIBUTORS 
 
 Oliver Gorwits, Robin Crook, Kevin Brintnall
 
+=head1 AUTHOR
+
+Karl Ward <karlward@cpan.org>
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005-2008 Karl Ward E<lt>karlward@cpan.orgE<gt>
+This software is Copyright (c) 2010 by Karl Ward <karlward@cpan.org>.
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+This is free software, licensed under:
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  The GNU General Public License, Version 2, June 1991
 
 =cut
+

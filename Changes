@@ -1,4 +1,6 @@
-# This file documents the revision history for Perl extension Net::MAC.
+1.103620  2010-12-28 12:55:41 Europe/London
+
+        - Port to Dist::Zilla
 
 1.6     2010-06-02 10:49 GMT
         - Fix test for changes to Test::Simple (RT.cpan#57867)

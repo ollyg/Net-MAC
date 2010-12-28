@@ -2,6 +2,9 @@ NAME
     Net::MAC - Perl extension for representing and manipulating MAC
     addresses
 
+VERSION
+    version 1.103620
+
 SYNOPSIS
       use Net::MAC;
       my $mac = Net::MAC->new('mac' => '08:20:00:AB:CD:EF'); 
@@ -23,7 +26,7 @@ SYNOPSIS
       elsif ($base == 10) { 
           print "$mac is in decimal format\n"; 
       }
-      else { die "This MAC is neither base 10 nor base 16"; } 
+      else { die "This MAC is neither base 10 nor base 16"; }
 
 DESCRIPTION
     This is a module that allows you to
@@ -75,14 +78,14 @@ METHODS
     object to croak(), you can give the new() method a die argument, such
     as:
 
-      my $m_obj = Net::MAC->new('mac' => '000adf012345', 'die' => 0); 
+      my $m_obj = Net::MAC->new('mac' => '000adf012345', 'die' => 0);
 
     There are cases where the auto-discovery will not be able to guess the
     numeric base of a MAC. If this happens, try giving the new() method a
     hint, like so:
 
       # Example: this MAC is actually in decimal-dotted notation, not hex
-      my $mac = Net::MAC->new('mac' => '10.0.0.12.14.8', 'base' => 10); 
+      my $mac = Net::MAC->new('mac' => '10.0.0.12.14.8', 'base' => 10);
 
     This is necessary for cases like the one above, where the class has no
     way of knowing that an address is decimal instead of hexadecimal.
@@ -130,7 +133,7 @@ METHODS
 
       00.80.02.ac.4f.ff     # get_zero_padded() returns 1
       0:80:2:ac:4f:ff       # get zero_padded() returns 0
-      0.125.85.122.155.64   # get_zero_padded() returns 0 
+      0.125.85.122.155.64   # get_zero_padded() returns 0
 
     Net::MAC only allows bit groups of 8 bits to be zero-padded.
 
@@ -213,7 +216,7 @@ METHODS
       my $d = Net::MAC->new(mac => '0.8.1.9.16.16', base => 10); 
       my $h = Net::MAC->new(mac => '00:08:01:0A:10:10', base => 16); 
       if ($d == $h) { print "$d and $h are numerically equal"; } 
-      if ($d ne $h) { print " but $d and $h are not the same string"; } 
+      if ($d ne $h) { print " but $d and $h are not the same string"; }
 
 BUGS
   Malformed MAC addresses
@@ -235,29 +238,19 @@ BUGS
 SEE ALSO
     Net::MacMap Net::MAC::Vendor
 
-AUTHOR
-    Karl Ward <karlward@cpan.org>
-
 MAINTAINER
-    Oliver Gorwits <oliver.gorwits@oucs.ox.ac.uk>
+    Oliver Gorwits <oliver@cpan.org>
 
 CONTRIBUTORS
     Oliver Gorwits, Robin Crook, Kevin Brintnall
 
+AUTHOR
+    Karl Ward <karlward@cpan.org>
+
 COPYRIGHT AND LICENSE
-    Copyright (C) 2005-2008 Karl Ward <karlward@cpan.org>
+    This software is Copyright (c) 2010 by Karl Ward <karlward@cpan.org>.
 
-    This program is free software; you can redistribute it and/or modify it
-    under the terms of the GNU General Public License as published by the
-    Free Software Foundation; either version 2 of the License, or (at your
-    option) any later version.
+    This is free software, licensed under:
 
-    This program is distributed in the hope that it will be useful, but
-    WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-    Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+      The GNU General Public License, Version 2, June 1991
 

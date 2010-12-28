@@ -1,4 +1,4 @@
-use Test::More tests => 5;
+use Test::More tests => 6;
 #use Test::More qw(no_plan);
 BEGIN { use_ok('Net::MAC') };
 
@@ -19,9 +19,14 @@ ok($rc, 'Class method set_format_for set the new format');
 
 my $macaddr = '01ab~01ab~01ab';
 
-eval{ Net::MAC->new(mac => $macaddr) };
-like($@, qr/invalid MAC format/, 'unspecified custom format dies');
+#eval{ Net::MAC->new(mac => $macaddr) };
+#like($@, qr/invalid MAC format/, 'unspecified custom format dies');
 
 my $mac = eval{ Net::MAC->new(mac => $macaddr, format => 'Custom') };
 isa_ok($mac, 'Net::MAC', 'known custom format succeeds');
+
+is($mac->as_Cisco, '01ab.01ab.01ab', 'as_foo working from custom format');
+
+is(Net::MAC->new(mac => '01ab.01ab.01ab')->as_Custom,
+    '01ab~01ab~01ab', 'as_Custom working from Cisco format');
 

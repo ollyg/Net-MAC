@@ -3,7 +3,7 @@ NAME
     addresses
 
 VERSION
-    version 2.103621
+    version 2.103622
 
 SYNOPSIS
       use Net::MAC;

@@ -20,6 +20,6 @@ requires:
   perl: 5.006000
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Net-MAC
-  homepage: http://github.com/ollyg/Net-MAC/wiki
+  homepage: https://github.com/ollyg/Net-MAC/wiki
   repository: git://github.com/ollyg/Net-MAC.git
-version: 2.103621
+version: 2.103622

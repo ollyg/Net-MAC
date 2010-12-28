@@ -17,7 +17,7 @@
 
 package Net::MAC;
 BEGIN {
-  $Net::MAC::VERSION = '2.103621';
+  $Net::MAC::VERSION = '2.103622';
 }
 
 use 5.006000;
@@ -260,7 +260,7 @@ sub _discover {
             "discovery of MAC address metadata failed, no meaningful characters in $mac"
         );
     }
-    # XXX: with support for custom delimiters, this does not work very well
+    # XXX: this isn't a very effective check for anything
     elsif ( $mac =~ /[g-z]/i ) {
         $self->error(
             "discovery of MAC address metadata failed, invalid characters in MAC address \"$mac\""
@@ -281,7 +281,7 @@ sub _find_delimiter {
     my ($self) = @_;
     my $mac = $self->get_mac();
     # XXX: why not just look for any non hexadec char?
-    if ( $mac =~ /(:|\.|\-|\s)/g ) {    # Found a delimiter
+    if ( $mac =~ m/([^a-zA-Z0-9]+)/ ) {    # Found a delimiter
         $self->set_delimiter($1);
         $self->verbose("setting attribute \"delimiter\" to \"$1\"");
         return (1);
@@ -299,13 +299,13 @@ sub _find_delimiter {
 sub _find_base {
     my ($self) = @_;
     my $mac = $self->get_mac();
+    # XXX this will fail for 00:00:00:00:00:00 ??
     if ( $mac =~ /[a-fA-F]/ ) {
-
         # It's hexadecimal
         $self->set_base(16);
         return (1);
     }
-    my @groups = split( /:|\.|\-|\s/, $mac );
+    my @groups = split( /[^a-zA-Z0-9]+/, $mac );
     my $is_decimal = 0;
     foreach my $group (@groups) {
         if ( length($group) == 3 ) {
@@ -332,10 +332,8 @@ sub _find_base {
 sub _find_bit_group {
     my ($self) = @_;
     my $mac = $self->get_mac();
-    if ( $mac =~ /(:|\.|\-|\s)/g ) {    # Found a delimiter
-        my $delimiter = $1;
-        $delimiter =~ s/(\.|\-|\:)/\\$1/;
-        if ( $delimiter eq ' ' ) { $delimiter = '\s'; }
+    if ( $mac =~ m/([^a-zA-Z0-9]+)/ ) {    # Found a delimiter
+        my $delimiter = ($1 eq ' ' ? '\s' : '\\'. $1);
         my @groups = split( /$delimiter/, $mac );
         if ( ( @groups > 3 ) && ( @groups % 2 ) ) {
             $self->error("invalid MAC address format: $mac");
@@ -385,7 +383,7 @@ sub _find_zero_padded {
     }
     my $delimiter = $self->get_delimiter();
     if ( $delimiter eq ' ' ) { $delimiter = '\s'; }
-    my @groups = split( /$delimiter/, $self->get_mac() );
+    my @groups = split( /\Q$delimiter\E/, $self->get_mac() );
     foreach my $group (@groups) {
         if ( $group =~ /^0./ ) {
             $self->set_zero_padded(1);
@@ -407,8 +405,7 @@ sub _write_internal_mac {
     my @groups;
     my $delimiter = $self->get_delimiter();
     if ($delimiter) {
-        $delimiter =~ s/(\.|\-|\:)/\\$1/;
-        if ( $delimiter eq ' ' ) { $delimiter = '\s'; }
+        $delimiter = ($delimiter eq ' ' ? '\s' : '\\'. $delimiter);
         @groups = split( /$delimiter/, $mac );
     }
     else { @groups = $mac; }
@@ -499,7 +496,7 @@ sub convert {
         @groups = @dec_groups;
     }
     my $mac_string;
-    if ( ( exists $arg{delimiter} ) && ( $arg{delimiter} =~ /:|\-|\.|\s/ ) ) {
+    if ( exists $arg{delimiter} ) {
 
         #warn "\nconvert delimiter $arg{'delimiter'}\n";
         #my $delimiter = $arg{'delimiter'};
@@ -620,7 +617,7 @@ Net::MAC - Perl extension for representing and manipulating MAC addresses
 
 =head1 VERSION
 
-version 2.103621
+version 2.103622
 
 =head1 SYNOPSIS
 

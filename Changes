@@ -1,6 +1,9 @@
-2.103621  2010-12-28 14:36:42 Europe/London
+2.103622  2010-12-28 21:00:37 Europe/London
 
-1.103621  2010-12-28 14:09:28 Europe/London
+        - Fix for converting between two as_ formats,
+            the delimiter discovery is a bit more relaxed
+
+2.103621  2010-12-28 14:36:42 Europe/London
 
         - Add custom format support (rt.cpan #63017)
 

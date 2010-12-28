@@ -3,7 +3,7 @@ NAME
     addresses
 
 VERSION
-    version 1.103620
+    version 1.103621
 
 SYNOPSIS
       use Net::MAC;
@@ -66,6 +66,9 @@ METHODS
       zero_padded   whether bit groups have leading zero characters
                     (Net::MAC only allows zero-padding for bit groups of 8 bits)
                     possible values: 0 1 
+      format        the name of a MAC address format specification which takes
+                    the place of the base,delimiter,bit_group and zero_padded
+                    options above
       verbose       write informational messages (useful for debugging)
                     possible values: 0 1
       die           die() on invalid MAC address (default is to die on invalid MAC) 
@@ -89,6 +92,37 @@ METHODS
 
     This is necessary for cases like the one above, where the class has no
     way of knowing that an address is decimal instead of hexadecimal.
+
+    If you have installed a custom MAC address format into the class (see
+    below) then you can also pass the "format" option as a hint:
+
+      my $mac = Net::MAC->new('mac' => 'ab01~ab01~ab01', 'format' => 'My_Format');
+
+  class methods
+   set_format_for()
+    When discovering MAC address formats, and converting between different
+    formats (using "convert" or "as_*") the module can use predefined common
+    formats or you can install your own for local circumstances.
+
+    For example consider a fictional device which uses MAC addresses
+    formatted like "ab01~ab01~ab01", which would otherwise not be
+    understood. You can install a new Format for this address style:
+
+      Net::MAC->set_format_for( 'My_Format_Name' => {
+          base => 16,
+          bit_group => 16,
+          delimiter => '~',
+      });
+
+    Now when using either the "format" option to "new()", or the "convert()"
+    or "as_*" methods, the module will recognise this new format
+    "My_Format_Name". The Hashref supplied can include any of the standard
+    options for formats as listed elsewhere in this documentation.
+
+      my $mac = Net::MAC->new('mac' => 'ab01~ab01~ab01', 'format' => 'My_Format_Name');
+
+    Custom formats sharing the same name as one shipping with the module
+    (such as "Cisco") will override that built-in format.
 
   accessor methods
    get_mac() method

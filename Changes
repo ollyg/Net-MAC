@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+2.103622  2010-12-28 21:00:37 Europe/London
+
         - Fix for converting between two as_ formats,
             the delimiter discovery is a bit more relaxed
 

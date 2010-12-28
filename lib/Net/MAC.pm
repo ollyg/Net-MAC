@@ -257,12 +257,12 @@ sub _discover {
             "discovery of MAC address metadata failed, no meaningful characters in $mac"
         );
     }
-    # XXX: with custom delimiters, this does not work
-    #elsif ( $mac =~ /[^:\.\-\sa-fA-F0-9]/ ) {
-    #    $self->error(
-    #        "discovery of MAC address metadata failed, invalid characters in MAC address \"$mac\""
-    #    );
-    #}
+    # XXX: with support for custom delimiters, this does not work very well
+    elsif ( $mac =~ /[g-z]/i ) {
+        $self->error(
+            "discovery of MAC address metadata failed, invalid characters in MAC address \"$mac\""
+        );
+    }
 
     unless ( $self->get_delimiter() )   { $self->_find_delimiter(); }
     unless ( $self->get_base() )        { $self->_find_base(); }

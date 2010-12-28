@@ -22,4 +22,4 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Net-MAC
   homepage: http://github.com/ollyg/Net-MAC/wiki
   repository: git://github.com/ollyg/Net-MAC.git
-version: 1.103621
+version: 2.103621

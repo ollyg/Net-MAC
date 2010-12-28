@@ -17,7 +17,7 @@
 
 package Net::MAC;
 BEGIN {
-  $Net::MAC::VERSION = '1.103621';
+  $Net::MAC::VERSION = '2.103621';
 }
 
 use 5.006000;
@@ -620,7 +620,7 @@ Net::MAC - Perl extension for representing and manipulating MAC addresses
 
 =head1 VERSION
 
-version 1.103621
+version 2.103621
 
 =head1 SYNOPSIS
 
